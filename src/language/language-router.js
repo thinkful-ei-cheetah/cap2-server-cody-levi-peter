@@ -46,10 +46,13 @@ languageRouter
 languageRouter
   .get('/head', async (req, res, next) => {
     try {
+      console.log('attempting to get users next word')
       const next = await LanguageService.getNextWord(
         req.app.get('db'),
         req.user.id,
       )
+      console.log('======================================')
+      console.log(next)
       if(!next){
         return res.status(404).json({
           error: `You don't have a next word`,
