@@ -46,7 +46,7 @@ const UserService = {
       const [languageId] = await trx
         .into('language')
         .insert([
-          { name: 'French', user_id },
+          { name: 'Japanese', user_id },
         ], ['id'])
 
       // when inserting words,
@@ -58,14 +58,37 @@ const UserService = {
         .first()
 
       const languageWords = [
-        ['entraine toi', 'practice', 2],
-        ['bonjour', 'hello', 3],
-        ['maison', 'house', 4],
-        ['développeur', 'developer', 5],
-        ['traduire', 'translate', 6],
-        ['incroyable', 'amazing', 7],
-        ['chien', 'dog', 8],
-        ['chat', 'cat', null],
+        ['jouzu', 'skillful', 2],
+        ['senpai', 'senior', 3],
+        ['sensei', 'teacher', 4],
+        ['arigatou', 'thank you', 5],
+        ['nani', 'what', 6],
+        ['nihon', 'japan', 7],
+        ['otousan', 'father', 8],
+        ['okaasan', 'mother', 9],
+        ['oniisan', 'elder brother', 10],
+        ['oneesan', 'elder sister', 11],
+        ['otouto', 'younger brother', 12],
+        ['imouto', 'younger sister', 13],
+        ['akai', 'red', 14],
+        ['aoi', 'blue', 15],
+        ['kiiroi', 'yellow', 16],
+        ['midori', 'green', 17],
+        ['shiroi', 'white', 18],
+        ['kuroi', 'black', 19],
+        ['ichi', 'one', 20],
+        ['ni', 'two', 21],
+        ['san', 'three', 22],
+        ['shi', 'four', 23],
+        ['go', 'five', 24],
+        ['roku', 'six', 25],
+        ['shichi', 'seven', 26],
+        ['hachi', 'eight', 27],
+        ['kyuu', 'nine', 28],
+        ['jyuu', 'ten', 29],
+        ['hai', 'yes', 30],
+        ['iie', 'no', 31],
+        ['desu', 'is', null]
       ]
 
       const [languageHeadId] = await trx
