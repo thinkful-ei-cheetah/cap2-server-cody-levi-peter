@@ -10,10 +10,22 @@ const userRouter = require('./user/user-router')
 
 const app = express()
 
+const whitelist = ['http://localhost:3000', 'https://jouzu.now.sh/', ];
+const options = {
+  origin: function (origin, callback) {
+    if (whitelist.indexOf(origin) !== -1 || !origin) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  }
+};
+
+
 app.use(morgan((NODE_ENV === 'production') ? 'tiny' : 'common', {
   skip: () => NODE_ENV === 'test',
 }))
-app.use(cors())
+app.use(cors(options))
 app.use(helmet())
 
 app.use('/api/auth', authRouter)
