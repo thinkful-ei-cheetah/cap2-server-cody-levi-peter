@@ -43,7 +43,7 @@ const LanguageService = {
       nextWord: next.original,
       wordCorrectCount: next.correct_count,
       wordIncorrectCount: next.incorrect_count,
-      totalScore: total_score
+      totalScore: next.total_score
     }
   }
 }
