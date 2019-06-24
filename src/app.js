@@ -10,7 +10,7 @@ const userRouter = require('./user/user-router')
 
 const app = express()
 
-const whitelist = ['http://localhost:3000', 'https://jouzu.now.sh/', ];
+const whitelist = ['http://localhost:3000', 'https://jouzu.now.sh', ];
 const options = {
   origin: function (origin, callback) {
     if (whitelist.indexOf(origin) !== -1 || !origin) {
