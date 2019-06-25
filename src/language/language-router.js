@@ -86,7 +86,6 @@ languageRouter
       let head = words.find(word => req.language.head === word.id)
       let SLL = new LinkedList
       SLL.insertFirst(head)
-      console.log(`SLL head = ${SLL.head}, SLL length = ${SLL.length}`)
       let nextId = SLL.head.value.next
       let nextObj = null
       while(words.length !== SLL.length){
@@ -94,7 +93,20 @@ languageRouter
         nextId = nextObj.next
         SLL.insertLast(nextObj)
       }
-      console.log(`SLL head = ${SLL.head}, SLL length = ${SLL.length}`)
+      let isCorrect
+      if(guess === SLL.head.value.original){
+        req.language.total_score++
+        SLL.head.value.correct_count++
+        SLL.head.value.memory_value *= 2
+        isCorrect = true
+      }
+      else{
+        req.language.total_score++
+        SLL.head.value.incorrect_count++
+        SLL.head.value.memory_value = 1
+        isCorrect = false
+      }
+      SLL.moveNode(SLL.head, SLL.head.value.memory_value)
       res.json({
         language: req.language,
         words,

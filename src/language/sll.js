@@ -2,7 +2,7 @@ class _Node {
   constructor(value, next, previous = null) {
     this.value = value;
     this.next = next;
-    this.previous = previous
+    // this.previous = previous
   }
 }
 
@@ -180,7 +180,30 @@ class LinkedList {
     currNode.next = new _Node(item, nextNode)
     return this
   }
-  
+  moveNode(node, spaces){
+    let currNode = this.head
+    let prevNode = null
+    // remove the node from the sll
+    if(this.head.value === node){
+      prevNode = this.head.next
+      this.head = prevNode
+    }
+    else{
+      while(currNode.value !== node) {
+        prevNode = currNode
+        currNode = currNode.next
+      }
+      prevNode.next = currNode.next
+    }
+    // move however many spaces or till the end
+    while(spaces > 0 && currNode !== null){
+      prevNode = currNode
+      currNode = currNode.next
+      spaces--
+    }
+    prevNode.next = node
+    node.next = currNode
+  }
 }
 
 module.exports = LinkedList
