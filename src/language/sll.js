@@ -10,6 +10,7 @@ class LinkedList {
   constructor() {
     // all we have is a head
     this.head = null;
+    this.last = null
     this.length = 0
   }
   display(){
@@ -32,6 +33,7 @@ class LinkedList {
   insertFirst(item) {
     // create a node and point to curr head
     this.head = new _Node(item, this.head)
+    this.last = this.head
     this.length++
   }
   insertLast(item) {
@@ -49,6 +51,7 @@ class LinkedList {
       }
       // add a new node to the end
       currNode.next = new _Node(item, null)
+      this.last = currNode.next
       this.length++
       // prevNode.next = currNode
     }
