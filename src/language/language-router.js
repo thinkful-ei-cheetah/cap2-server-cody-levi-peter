@@ -87,11 +87,13 @@ languageRouter
       let SLL = new LinkedList
       SLL.insertFirst(head)
       console.log(`SLL head = ${SLL.head}, SLL length = ${SLL.length}`)
-      let last = SLL.head
+      let last = null
       let next = null
-      while(words.length !== SLL.length && last.next !== null){
+      while(words.length !== SLL.length){
         last = SLL.findLast()
         next = words.find(word => word.id === last.next)
+        console.log('Last = ', last)
+        console.log('Next = ', next)
         SLL.insertLast(next)
       }
       console.log(`SLL head = ${SLL.head}, SLL length = ${SLL.length}`)
