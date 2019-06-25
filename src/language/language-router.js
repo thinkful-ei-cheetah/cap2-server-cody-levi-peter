@@ -94,10 +94,11 @@ languageRouter
         next = words.find(word => word.id === last.next)
         SLL.insertLast(next)
       }
-      SLL.display()
+      console.log(`SLL head = ${SLL.head}, SLL length = ${SLL.length}`)
       res.json({
         language: req.language,
         words,
+        SLL
       })
     } catch(error) {
       next(error)
