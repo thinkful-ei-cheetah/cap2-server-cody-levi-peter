@@ -106,8 +106,8 @@ languageRouter
         SLL.head.value.memory_value = 1
         isCorrect = false
       }
-      console.log(SLL.head)
-      SLL.moveNode(SLL.head, SLL.head.value.memory_value)
+      console.log(SLL.head.value)
+      SLL.moveNode(SLL.head.value.memory_value)
       res.json({
         language: req.language,
         words,
