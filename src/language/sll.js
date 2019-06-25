@@ -180,6 +180,16 @@ class LinkedList {
     currNode.next = new _Node(item, nextNode)
     return this
   }
+  findLast(){
+    let currNode = this.head
+    if(!currNode){
+      return console.log('empty list')
+    }
+    while(currNode.next !== null){
+      currNode = currNode.next
+    }
+    return currNode
+  }
 }
 
 module.exports = LinkedList
