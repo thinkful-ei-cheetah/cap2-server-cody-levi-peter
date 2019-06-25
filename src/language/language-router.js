@@ -70,20 +70,19 @@ languageRouter
   .route('/guess')
   .post(jsonBodyParser, async (req, res, next) => {
     try {
-      let { guess, language } = req.body
-      guess = xss(guess)
+      guess = xss(req.body.guess)
       if(!guess){
         return res.status(400).json({
           error: `Missing 'guess' in request body`
         })
       }
-      console.log(language)
-      console.log(guess)
+      console.log("user's language is .......", req.language)
+      console.log("user's guess is ..........", guess)
       const words = await LanguageService.getLanguageWordsInOrder(
         req.app.get('db'),
-        language.id,
+        req.language.id,
       )
-      console.log(words)
+      console.log("words pulled out of db....", words)
       // let SLL = new LinkedList
       res.json({
         language: req.language,
