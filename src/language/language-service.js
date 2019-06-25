@@ -29,6 +29,23 @@ const LanguageService = {
       .where({ language_id })
   },
 
+  getLanguageWordsInOrder(db, language_id) {
+    return db
+      .from('word')
+      .select(
+        'id',
+        'language_id',
+        'original',
+        'translation',
+        'next',
+        'memory_value',
+        'correct_count',
+        'incorrect_count',
+      )
+      .where({ language_id })
+      .orderBy('memory_value')
+  },
+
   getNextWord(db, user_id){
     return db
       .from('language AS l')
