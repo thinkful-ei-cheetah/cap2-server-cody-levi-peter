@@ -89,13 +89,17 @@ languageRouter
       console.log(`SLL head = ${SLL.head}, SLL length = ${SLL.length}`)
       let nextId = SLL.head.next
       let nextObj = null
-      while(words.length !== SLL.length){
-        nextObj = words.find(word => word.id === nextId)
-        nextId = nextObj.next
-        console.log(nextId)
-        console.log(nextObj)
-        SLL.insertLast(nextObj)
-      }
+      nextObj = words.find(word => word.id === nextId)
+      nextId = nextObj.next
+      console.log(nextId)
+      console.log(nextObj)
+      // while(words.length !== SLL.length){
+      //   nextObj = words.find(word => word.id === nextId)
+      //   nextId = nextObj.next
+      //   console.log(nextId)
+      //   console.log(nextObj)
+      //   SLL.insertLast(nextObj)
+      // }
       console.log(`SLL head = ${SLL.head}, SLL length = ${SLL.length}`)
       res.json({
         language: req.language,
