@@ -68,10 +68,12 @@ languageRouter
   .route('/guess')
   .post(jsonBodyParser, async (req, res, next) => {
     try {
-      console.log(`req.body = ${req.body.guess}`)
+      console.log(`req.body.guess = ${req.body.guess}`)
       // let guess = xss(req.body.guess).toLowerCase()
-      let guess = req.body.guess.toLowerCase()
+      let guess = req.body.guess
       console.log(`guess = ${guess}`)
+      guess = guess.toLowerCase()
+      console.log(`guess.toLowerCase() = ${guess}`)
       if(!guess){
         return res.status(400).json({
           error: `Missing 'guess' in request body`
