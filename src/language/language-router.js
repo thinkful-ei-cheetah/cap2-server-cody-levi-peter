@@ -4,8 +4,8 @@ const { requireAuth } = require('../middleware/jwt-auth')
 const LinkedList = require('./sll')
 const xss = require('xss')
 
-const jsonBodyParser = express.json()
 const languageRouter = express.Router()
+const jsonBodyParser = express.json()
 
 languageRouter
   .use(requireAuth)
