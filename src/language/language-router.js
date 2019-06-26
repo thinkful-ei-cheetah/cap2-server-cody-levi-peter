@@ -115,6 +115,7 @@ languageRouter
         SLL
         )
       res.json({
+        nextWord: SLL.head.value.original,
         totalScore: req.language.total_score,
         wordCorrectCount: formerHead.value.correct_count,
         wordIncorrectCount: formerHead.value.incorrect_count,
