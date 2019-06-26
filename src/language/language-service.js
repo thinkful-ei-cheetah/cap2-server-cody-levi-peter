@@ -74,6 +74,20 @@ const LanguageService = {
         })
       await trx('word')
         
+      let currNode = sll.head
+      let next = null
+      while(currNode){
+        currNode.next ? next = currNode.next.value.id : next = null
+        await trx('word')
+          .where('id', currNode.value.id)
+          .update({
+            next: next,
+            memory_value: currNode.value.memory_value,
+            correct_count: currNode.value.correct_count,
+            incorrect_count: currNode.value.incorrect_count
+          })
+        currNode = currNode.next
+      }
     })
   }
 }
