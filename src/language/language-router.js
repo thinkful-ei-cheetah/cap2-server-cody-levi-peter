@@ -70,7 +70,7 @@ languageRouter
   .route('/guess')
   .post(jsonBodyParser, async (req, res, next) => {
     try {
-      let guess = xss(req.body.guess)
+      let guess = xss(req.body.guess).toLowercase()
       if(!guess){
         return res.status(400).json({
           error: `Missing 'guess' in request body`
@@ -115,26 +115,18 @@ languageRouter
         SLL
         )
       res.json({
-        output: {
-          totalScore: req.language.total_score,
-          wordCorrectCount: formerHead.value.correct_count,
-          wordIncorrectCount: formerHead.value.incorrect_count,
-          answer: formerHead.value.translation,
-          isCorrect
-        },
-        language: req.language,
-        words,
-        SLL
+        totalScore: req.language.total_score,
+        wordCorrectCount: formerHead.value.correct_count,
+        wordIncorrectCount: formerHead.value.incorrect_count,
+        answer: formerHead.value.translation,
+        isCorrect,
+        // language: req.language,
+        // words,
+        // SLL
       })
     } catch(error) {
       next(error)
     }
   })
-  // nextWord: testLanguagesWords[0].original,
-  // totalScore: 3,
-  // wordCorrectCount: 1,
-  // wordIncorrectCount: 0,
-  // answer: testLanguagesWords[2].translation,
-  // isCorrect: true
 
 module.exports = languageRouter
