@@ -68,6 +68,8 @@ languageRouter
   .route('/guess')
   .post(jsonBodyParser, async (req, res, next) => {
     try {
+      const entries = Object.entries(req.body)
+      console.log(entries)
       console.log(`req.body.guess = ${req.body.guess}`)
       // let guess = xss(req.body.guess).toLowerCase()
       let guess = req.body.guess
