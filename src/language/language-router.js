@@ -101,14 +101,22 @@ languageRouter
         isCorrect = true
       }
       else{
-        req.language.total_score++
+        req.language.total_score--
         SLL.head.value.incorrect_count++
         SLL.head.value.memory_value = 1
         isCorrect = false
       }
+      let formerHead = SLL.head
       console.log(SLL.head.value)
       SLL.moveNode(SLL.head.value.memory_value)
       res.json({
+        output: {
+          totalScore: req.language.total_score,
+          wordCorrectCount: formerHead.value.correct_count,
+          wordIncorrectCount: formerHead.value.incorrect_count,
+          answer: formerHead.value.translation,
+          isCorrect
+        },
         language: req.language,
         words,
         SLL
@@ -117,5 +125,11 @@ languageRouter
       next(error)
     }
   })
+  // nextWord: testLanguagesWords[0].original,
+  // totalScore: 3,
+  // wordCorrectCount: 1,
+  // wordIncorrectCount: 0,
+  // answer: testLanguagesWords[2].translation,
+  // isCorrect: true
 
 module.exports = languageRouter
