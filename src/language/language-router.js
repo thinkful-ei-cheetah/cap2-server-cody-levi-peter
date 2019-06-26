@@ -107,8 +107,13 @@ languageRouter
         isCorrect = false
       }
       let formerHead = SLL.head
-      console.log(SLL.head.value)
       SLL.moveNode(SLL.head.value.memory_value)
+      req.language.head = SLL.head.value.id
+      LanguageService.saveSLL(
+        req.app.get('db'),
+        req.language, 
+        SLL
+        )
       res.json({
         output: {
           totalScore: req.language.total_score,

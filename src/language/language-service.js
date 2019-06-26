@@ -62,6 +62,19 @@ const LanguageService = {
       wordIncorrectCount: next.incorrect_count,
       totalScore: next.total_score
     }
+  },
+
+  saveSLL(db, language, sll){
+    return db.transaction(async trx => {
+      await trx('language')
+        .where('id', language.id)
+        .update({
+          head: language.head,
+          total_score: language.total_score
+        })
+      await trx('word')
+        
+    })
   }
 }
 // {
