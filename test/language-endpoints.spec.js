@@ -182,9 +182,9 @@ describe.only('Language Endpoints', function () {
           .expect(200)
           .expect({
             nextWord: testLanguagesWords[1].original,
-            totalScore: 0,
+            totalScore: -1,
             wordCorrectCount: 0,
-            wordIncorrectCount: 0,
+            wordIncorrectCount: 1,
             answer: testLanguagesWords[0].translation,
             isCorrect: false
           })
@@ -201,11 +201,11 @@ describe.only('Language Endpoints', function () {
           .set('Authorization', helpers.makeAuthHeader(testUser))
           .send(incorrectPostBody)
           .expect({
-            nextWord: testLanguagesWords[0].original,
-            totalScore: 0,
+            nextWord: testLanguagesWords[1].original,
+            totalScore: -1,
             wordCorrectCount: 0,
             wordIncorrectCount: 1,
-            answer: testLanguagesWords[1].translation,
+            answer: testLanguagesWords[0].translation,
             isCorrect: false
           })
       })

@@ -40,7 +40,6 @@ languageRouter
         language: req.language,
         words,
       })
-      next()
     } catch (error) {
       next(error)
     }
@@ -58,8 +57,7 @@ languageRouter
           error: `You don't have a next word`,
         })
       }
-      res.json(LanguageService.serializeNextWord(next))
-      next()
+      return res.json(LanguageService.serializeNextWord(next))
     }
     catch(error){
       next(error)
@@ -114,7 +112,7 @@ languageRouter
         req.language, 
         SLL
         )
-      res.json({
+      return res.json({
         nextWord: SLL.head.value.original,
         totalScore: req.language.total_score,
         wordCorrectCount: formerHead.value.correct_count,
