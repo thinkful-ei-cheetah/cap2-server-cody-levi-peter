@@ -94,7 +94,7 @@ languageRouter
         SLL.insertLast(nextObj)
       }
       let isCorrect
-      if(guess === SLL.head.value.original){
+      if(guess === SLL.head.value.translation){
         req.language.total_score++
         SLL.head.value.correct_count++
         SLL.head.value.memory_value *= 2
