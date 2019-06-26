@@ -1,7 +1,7 @@
 const app = require('../src/app')
 const helpers = require('./test-helpers')
 
-describe.only('Language Endpoints', function () {
+describe('Language Endpoints', function () {
   let db
 
   const testUsers = helpers.makeUsersArray()
@@ -184,8 +184,8 @@ describe.only('Language Endpoints', function () {
             nextWord: testLanguagesWords[1].original,
             totalScore: -1,
             wordCorrectCount: 0,
-            wordIncorrectCount: 1,
-            answer: testLanguagesWords[0].translation,
+            wordIncorrectCount: 0,
+            answer: testLanguagesWords[1].translation,
             isCorrect: false
           })
       })
@@ -201,8 +201,8 @@ describe.only('Language Endpoints', function () {
           .set('Authorization', helpers.makeAuthHeader(testUser))
           .send(incorrectPostBody)
           .expect({
-            nextWord: testLanguagesWords[1].original,
-            totalScore: -1,
+            nextWord: testLanguagesWords[0].original,
+            totalScore: -2,
             wordCorrectCount: 0,
             wordIncorrectCount: 1,
             answer: testLanguagesWords[0].translation,
@@ -230,7 +230,7 @@ describe.only('Language Endpoints', function () {
             totalScore: 1,
             wordCorrectCount: 0,
             wordIncorrectCount: 0,
-            answer: testLanguagesWords[0].translation,
+            answer: testLanguagesWords[1].translation,
             isCorrect: true
           })
       })
@@ -256,7 +256,7 @@ describe.only('Language Endpoints', function () {
             totalScore: 2,
             wordCorrectCount: 0,
             wordIncorrectCount: 0,
-            answer: testLanguagesWords[1].translation,
+            answer: testLanguagesWords[2].translation,
             isCorrect: true
           })
 
@@ -272,7 +272,7 @@ describe.only('Language Endpoints', function () {
             totalScore: 3,
             wordCorrectCount: 1,
             wordIncorrectCount: 0,
-            answer: testLanguagesWords[2].translation,
+            answer: testLanguagesWords[0].translation,
             isCorrect: true
           })
       })

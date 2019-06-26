@@ -72,8 +72,6 @@ const LanguageService = {
           head: language.head,
           total_score: language.total_score
         })
-      await trx('word')
-        
       let currNode = sll.head
       let next = null
       while(currNode){

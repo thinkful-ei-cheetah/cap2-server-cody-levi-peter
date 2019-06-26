@@ -68,26 +68,26 @@ languageRouter
   .route('/guess')
   .post(jsonBodyParser, async (req, res, next) => {
     try {
-      const entries = Object.entries(req.body)
-      console.log(entries)
-      console.log(`req.body.guess = ${req.body.guess}`)
-      // let guess = xss(req.body.guess).toLowerCase()
-      let guess = req.body.guess
-      console.log(`guess = ${guess}`)
+      // const entries = Object.entries(req.body)
+      // console.log(entries)
+      // console.log(`req.body.guess = ${req.body.guess}`)
+      let guess = xss(req.body.guess).toLowerCase()
+      // let guess = req.body.guess
+      // console.log(`guess = ${guess}`)
       guess = guess.toLowerCase()
-      console.log(`guess.toLowerCase() = ${guess}`)
+      // console.log(`guess.toLowerCase() = ${guess}`)
       if(!guess){
         return res.status(400).json({
           error: `Missing 'guess' in request body`
         })
       }
-      console.log("user's language is .......", req.language)
-      console.log("user's guess is ..........", guess)
+      // console.log("user's language is .......", req.language)
+      // console.log("user's guess is ..........", guess)
       let words = await LanguageService.getLanguageWordsInOrder(
         req.app.get('db'),
         req.language.id,
       )
-      console.log("words pulled out of db....", words)
+      // console.log("words pulled out of db....", words)
       let head = words.find(word => req.language.head === word.id)
       let SLL = new LinkedList
       SLL.insertFirst(head)
@@ -111,10 +111,9 @@ languageRouter
         SLL.head.value.memory_value = 1
         isCorrect = false
       }
-      let formerHead = SLL.head
       SLL.moveNode(SLL.head.value.memory_value)
       req.language.head = SLL.head.value.id
-      LanguageService.saveSLL(
+      await LanguageService.saveSLL(
         req.app.get('db'),
         req.language, 
         SLL
@@ -122,9 +121,9 @@ languageRouter
       return res.json({
         nextWord: SLL.head.value.original,
         totalScore: req.language.total_score,
-        wordCorrectCount: formerHead.value.correct_count,
-        wordIncorrectCount: formerHead.value.incorrect_count,
-        answer: formerHead.value.translation,
+        wordCorrectCount: SLL.head.value.correct_count,
+        wordIncorrectCount: SLL.head.value.incorrect_count,
+        answer: SLL.head.value.translation,
         isCorrect,
         // language: req.language,
         // words,
