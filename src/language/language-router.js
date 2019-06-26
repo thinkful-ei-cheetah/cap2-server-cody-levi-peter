@@ -68,26 +68,17 @@ languageRouter
   .route('/guess')
   .post(jsonBodyParser, async (req, res, next) => {
     try {
-      // const entries = Object.entries(req.body)
-      // console.log(entries)
-      // console.log(`req.body.guess = ${req.body.guess}`)
       let guess = xss(req.body.guess).toLowerCase()
-      // let guess = req.body.guess
-      // console.log(`guess = ${guess}`)
       guess = guess.toLowerCase()
-      // console.log(`guess.toLowerCase() = ${guess}`)
       if(!guess){
         return res.status(400).json({
           error: `Missing 'guess' in request body`
         })
       }
-      // console.log("user's language is .......", req.language)
-      // console.log("user's guess is ..........", guess)
       let words = await LanguageService.getLanguageWordsInOrder(
         req.app.get('db'),
         req.language.id,
       )
-      // console.log("words pulled out of db....", words)
       let head = words.find(word => req.language.head === word.id)
       let SLL = new LinkedList
       SLL.insertFirst(head)
@@ -125,9 +116,6 @@ languageRouter
         wordIncorrectCount: SLL.head.value.incorrect_count,
         answer: SLL.head.value.translation,
         isCorrect,
-        // language: req.language,
-        // words,
-        // SLL
       })
     } catch(error) {
       next(error)
