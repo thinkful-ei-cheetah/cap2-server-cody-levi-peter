@@ -1,4 +1,35 @@
-# Spaced repetition API!
+# Jouzu
+
++ Devs: [Cody](https://github.com/cgillette12), [Levi](https://github.com/levipaulk), and [Peter](https://github.com/Paendabear)
++ [Live](https://jouzu.now.sh/register)
++ [Client](https://github.com/thinkful-ei-cheetah/cap2-client-cody-levi-peter) Repo
++ [Server](https://github.com/thinkful-ei-cheetah/cap2-server-cody-levi-peter) Repo
+
+## Summary
+
++ Jouzu is a language learning application, that is currently in alpha. Jouzu utilizes spaced repetition to improve memorization
+  + In its current build...
+    + Dashboard:
+      + A user view the language they are currently studying as well as their total score (correct - incorrect)
+      + A user can review a list of vocabulary words
+        + Currently only 31 Japanese words are available.
+        + Each word lists the user's number of correct and incorrect guesses
+      + A user can start practicing, using spaced repetition 
+    + Learn:
+      + Guess the translation for the current word
+        + Currently Japanese -> English
+        + Number of correct / incorrect guesses is displayed
+      + Correct Guess
+        + Your choice and the answer are displayed
+        + Total score and correct count are updated
+      + Incorrect Guess
+        + Your choice and the answer are displayed
+        + Total score and incorrect count are updated
+
+## Test User
+
++ username: `admin`
++ password: `pass`
 
 ## Local dev setup
 
@@ -50,3 +81,26 @@ Run the tests mode `npm test`
 Run the migrations up `npm run migrate`
 
 Run the migrations down `npm run migrate -- 0`
+
+## Technologies
+
++ This is an Express project, built using Nodejs
++ Node Modules used for this project:
+  + Dependencies:
+    + bcryptjs
+    + cors
+    + dotenv
+    + express
+    + helmet
+    + jsonwebtoken
+    + knex
+    + morgan
+    + pg
+    + xss
+    
+  + devDependencies:
+    + chai
+    + mocha
+    + nodemon
+    + postgrator-cli
+    + supertest
