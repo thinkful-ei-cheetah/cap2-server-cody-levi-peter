@@ -102,6 +102,7 @@ languageRouter
         SLL.head.value.memory_value = 1
         isCorrect = false
       }
+      let formerHead = SLL.head.value
       SLL.moveNode(SLL.head.value.memory_value)
       req.language.head = SLL.head.value.id
       await LanguageService.saveSLL(
@@ -114,7 +115,7 @@ languageRouter
         totalScore: req.language.total_score,
         wordCorrectCount: SLL.head.value.correct_count,
         wordIncorrectCount: SLL.head.value.incorrect_count,
-        answer: SLL.head.value.translation,
+        answer: formerHead.translation,
         isCorrect,
       })
     } catch(error) {
