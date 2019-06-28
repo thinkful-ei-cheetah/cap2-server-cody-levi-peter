@@ -31,7 +31,7 @@ languageRouter
 languageRouter
   .get('/', async (req, res, next) => {
     try {
-      const words = await LanguageService.getLanguageWords(
+      const words = await LanguageService.getLanguageWordsInOrder(
         req.app.get('db'),
         req.language.id,
       )
